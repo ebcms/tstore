@@ -4,7 +4,7 @@
     <div class="my-4 d-flex flex-column gap-4">
         <div class="d-flex gap-3">
             <div>
-                <img src="{echo $theme['logo']}" class="img-thumbnail" width="100" alt="">
+                <img src="{echo $theme['thumb']}" class="img-thumbnail" width="100" alt="">
             </div>
             <div class="d-flex flex-column gap-2 flex-grow-1 bg-light p-3">
                 <div><span class="fs-6 fw-bold">{$theme['title']?:'-'}</span><sup class="ms-1 text-secondary">{$theme['version']??''}</sup></div>
@@ -121,7 +121,7 @@
             });
         };
         EBCMS.backup = function() {
-            EBCMS.console("程序备份中...");
+            EBCMS.console("备份中...");
             $.ajax({
                 type: "GET",
                 url: "{echo $router->build('/ebcms/tstore/backup')}",
@@ -129,7 +129,7 @@
                 success: function(response) {
                     if (response.code == 0) {
                         if (!EBCMS.state) {
-                            EBCMS.stop('已终止(程序备份完成)');
+                            EBCMS.stop('已终止(备份完成)');
                             return;
                         }
                         EBCMS.console(response.message);
@@ -144,38 +144,14 @@
             });
         };
         EBCMS.cover = function() {
-            EBCMS.console("程序升级中...");
+            EBCMS.console("主题导入中...");
             $.ajax({
                 type: "GET",
                 url: "{echo $router->build('/ebcms/tstore/cover')}",
                 dataType: "json",
                 success: function(response) {
                     if (response.code == 0) {
-                        EBCMS.console("程序升级完毕");
-                        EBCMS.install();
-                    } else {
-                        EBCMS.rollback(response.message);
-                    }
-                },
-                error: function(context) {
-                    EBCMS.rollback("发生错误：" + context.statusText);
-                }
-            });
-        };
-        EBCMS.install = function() {
-            EBCMS.console("数据升级中...");
-            $.ajax({
-                type: "GET",
-                url: "{echo $router->build('/ebcms/tstore/install')}",
-                dataType: "json",
-                success: function(response) {
-                    if (response.code == 0) {
-                        if (!EBCMS.state) {
-                            EBCMS.stop('系统升级完成');
-                            return;
-                        }
-                        EBCMS.console("数据升级完毕");
-                        EBCMS.console("升级成功！", 'green');
+                        EBCMS.console("主题导入完毕", 'green');
                         EBCMS.console(response.message + "<hr>尝试继续升级...<hr>");
                         EBCMS.check();
                     } else {

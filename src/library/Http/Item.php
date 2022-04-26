@@ -6,9 +6,9 @@ namespace App\Ebcms\Tstore\Http;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Tstore\Model\Server;
-use DigPHP\Request\Request;
-use DigPHP\Template\Template;
-use Ebcms\Framework\Framework;
+use DiggPHP\Request\Request;
+use DiggPHP\Template\Template;
+use DiggPHP\Framework\Framework;
 
 class Item extends Common
 {

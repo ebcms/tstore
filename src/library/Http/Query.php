@@ -6,7 +6,7 @@ namespace App\Ebcms\Tstore\Http;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Tstore\Model\Server;
-use DigPHP\Request\Request;
+use DiggPHP\Request\Request;
 
 class Query extends Common
 {

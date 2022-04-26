@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Ebcms\Tstore\Model;
 
 use Composer\InstalledVersions;
-use DigPHP\Router\Router;
-use Ebcms\Framework\Config;
-use Ebcms\Framework\Framework;
+use DiggPHP\Router\Router;
+use DiggPHP\Framework\Config;
+use DiggPHP\Framework\Framework;
 use Exception;
 use Throwable;
 

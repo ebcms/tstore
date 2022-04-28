@@ -54,7 +54,19 @@ class Server
         ): string {
             return $router->build('/');
         });
+        $res['installed'] = $this->getInstalled();
         return $res;
+    }
+
+    public function getInstalled(): array
+    {
+        $themes = [];
+        foreach (glob(Framework::getRoot() . '/theme/*/theme.json') as $file) {
+            $name = substr($file, strlen(Framework::getRoot() . '/theme/'), -strlen('/theme.json'));
+            $json = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
+            $themes[$name] = $json['version'] ?? '0.0.0';
+        }
+        return $themes;
     }
 
     private function get(string $url, $timeout = 5, $ssl_verify = false)
